@@ -1,7 +1,7 @@
 # JavaScript_TypeScript_and_Frames_Otavio_Miranda
- JS and TS complete course and libs and frameworks
- 
+
 Content: 
+
 Basic JavaScript, Functional, Object Oriented (ES6+, front-end, and back-end)
 
 TypeScript - a superset JavaScript with static typing (front-end and back-end)
