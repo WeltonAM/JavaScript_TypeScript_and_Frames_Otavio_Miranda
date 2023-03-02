@@ -16,8 +16,19 @@ async function walk(files, rootDir) {
     for (let file of files) {
         const fileFullPath = path.resolve(rootDir, file);
         const stats = await fs.stat(fileFullPath);
-        console.log(file, stats.isDirectory());
+        
+        if(/\.git/g.test(fileFullPath)) continue;
+        if(/\.node_modules/g.test(fileFullPath)) continue;
+        
+        if(stats.isDirectory()){
+            readdir(fileFullPath);
+            continue;
+        }
+        
+        if(!/\.html$/g.test(fileFullPath)) continue;
+
+        console.log(file, stats.isDirectory())
     }
 }
 
-readdir('C:\\Users\\PC\\Documents\\Personal\\JavaScript_TypeScript_and_Frames_Otavio_Miranda')
+readdir('C:\\Users\\pilgr\\Documents\\Programador\\Cursos\\JavaScript_TypeScript_and_Frames_Otavio_Miranda')
