@@ -11,3 +11,10 @@ cadastro.init();
 
 // import './assets/css/style.css';
 
+import Signup from './modules/Signup'
+const signup = new Signup('.signup')
+signup.init();
+
+import Contato from './modules/Contato'
+const contato = new Contato('.contato')
+contato.init();

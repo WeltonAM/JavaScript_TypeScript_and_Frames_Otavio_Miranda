@@ -7,6 +7,7 @@ export default class Login {
 
   init() {
     this.events();
+
   }
 
   events() {
@@ -24,13 +25,31 @@ export default class Login {
     let error = false;
 
     if(!validator.isEmail(emailInput.value)) {
-      alert('E-mail inválido');
-      error = true;
+      let p = document.createElement('p');
+      let errorMsg = document.createTextNode('Email inválido')
+      p.appendChild(errorMsg);
+      p.classList.add('erro');
+      p.classList.add('alert-danger');
+      emailInput.after(p);
+      error = true
+
+      setTimeout(() => {
+        p.innerHTML = " "
+      }, 3000)
     }
 
     if(passwordInput.value.length < 3 || passwordInput.value.length > 50) {
-      alert('Senha precisa ter entre 3 e 50 caracteres');
-      error = true;
+      let p = document.createElement('p');
+      let errorMsg = document.createTextNode('A senha precisa ter entre 6 e 20 caracteres')
+      p.appendChild(errorMsg);
+      p.classList.add('erro');
+      p.classList.add('alert-danger');
+      passwordInput.after(p);
+      error = true
+
+      setTimeout(() => {
+        p.innerHTML = " "
+      }, 3000)
     }
 
     if(!error) el.submit();
