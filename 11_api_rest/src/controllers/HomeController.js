@@ -1,8 +1,6 @@
 class HomeController {
-  index(req, res) {
-    res.status(200).json({
-      tudoCerto: true,
-    });
+  async index(req, res) {
+    res.json('Index');
   }
 }
 
