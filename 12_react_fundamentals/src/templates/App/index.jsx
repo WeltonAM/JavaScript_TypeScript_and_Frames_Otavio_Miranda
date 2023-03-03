@@ -8,9 +8,9 @@ export function App() {
   return (
     <CounterProvider>
       <PostsProvider>
-        <div>
+        <>
           <Main></Main>
-        </div>
+        </>
       </PostsProvider>
     </CounterProvider>
   );
