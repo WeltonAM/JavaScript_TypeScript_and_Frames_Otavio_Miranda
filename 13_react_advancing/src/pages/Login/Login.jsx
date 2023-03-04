@@ -1,6 +1,7 @@
 import { Title } from './styledLogin';
 import { Container } from '../../styles/GlobalStyles';
 import { useDispatch } from 'react-redux';
+import * as actionsExamples from '../../store/modules/example/actions'
 
 const Index = () => {
 
@@ -9,10 +10,7 @@ const Index = () => {
     const handleClick = (e) => {
         e.preventDefault();
 
-        dispatch({
-            type: 'BOTAO_CLICADO',
-            // payload: { email, senha },
-        });
+        dispatch(actionsExamples.clicaBotaoRequest());
     }
 
     return (

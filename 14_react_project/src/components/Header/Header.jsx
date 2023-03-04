@@ -1,11 +1,8 @@
 import { Nav } from './styledHeader.js';
 import { FaHome, FaSignInAlt, FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const Header = () => {
-
-    const botaoClicado = useSelector(state => state.exampleReducer.botaoClicado);
 
     return (
         <Nav>
@@ -13,14 +10,13 @@ const Header = () => {
                 <FaHome size={20} />
             </Link>
          
-            <Link to="/login">
+            <Link to="/register">
                 <FaUserAlt size={17} />
             </Link>
 
-            <Link to="/asd">
+            <Link to="/login">
                 <FaSignInAlt size={19} />
             </Link>
-            {botaoClicado && botaoClicado ? 'Clicado' : 'Não clicado'}
         </Nav>
     )
 }

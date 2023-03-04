@@ -1,9 +1,7 @@
-
+import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from './styles/GlobalStyles';
-import Routes from './routes/Routes';
+import MyRoutes from './routes/MyRoutes';
 import Header from './components/Header/Header';
-import { Router } from 'react-router-dom';
-import history from './services/history';
 import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import store, { persistor } from './store';
@@ -13,14 +11,14 @@ function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <div className="App">
-          <Router history={history} >
+        <BrowserRouter>
+          <div className="App">
             <Header />
-            <Routes />
+            <MyRoutes />
             <GlobalStyle />
             <ToastContainer autoClose={3000} className="toast-container" />
-          </Router>
-        </div>
+          </div>
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   );
