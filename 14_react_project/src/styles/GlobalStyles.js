@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { primaryColor, primaryDarkColor } from '../config/colors';
 import 'react-toastify/dist/ReactToastify.css'
+import * as colors from '../config/colors';
 
 export default createGlobalStyle`
     * {
@@ -22,18 +23,22 @@ export default createGlobalStyle`
 
     button {
         cursor: pointer;
-        background: ${primaryColor};
+        background: ${colors.primaryColor};
         border: none;
         color: #fff;
         padding: 10px 20px;
         border-radius: 3px;
         font-weight: 700;
+        transition: all 300ms;
+    }
+
+    button:hover {
+        filter: brightness(75%);
     }
 
     a {
         text-decoration: none;
-        background: ${primaryColor};
-        color: #fff;
+        color: ${primaryColor};
     }
 
     ul {
