@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container } from '../../styles/GlobalStyles';
 import { Form } from './styledLogin';
 import { toast } from 'react-toastify';
@@ -11,13 +11,13 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const isLoading = useSelector(state => state.auth.isLoading);
+    const auth = useSelector(state => state.auth.token);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,10 +37,13 @@ const Login = (props) => {
         if (formErros) return;
 
         dispatch(actions.loginRequest({ email, password }));
-
-        return navigate("/");
     }
 
+    useEffect(() => {
+        if(auth !== false)
+        navigate('/');
+    }, [auth, navigate])
+    
     return (
         <Container>
             <Loading isLoading={isLoading} />

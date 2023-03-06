@@ -9,11 +9,13 @@ function* loginRequest({ payload }) {
 
     try {
         const res = yield call(axios.post, '/tokens', payload);
+
         yield put(actions.loginSuccess({ ...res.data }));
 
-        toast.success('Bem-vindo!');
-
         axios.defaults.headers.Authorization = `Bearer ${res.data.token}`;
+
+        toast.success(`Boas vindas, ${res.data.user.nome}!`);
+
     } catch (e) {
         toast.error('Usuário ou senha inválidos.');
 
@@ -36,16 +38,24 @@ function* registerRequest({ payload }) {
     try {
         if (id) {
             yield call(axios.put, '/users', {
-                nome, email, password
+                nome, email, password: password || undefined
             });
 
-            toast.success('Usuário atualizado.');
-            
-            yield put(actions.registerSuccess({ nome, email, password }));
+            toast.success('Usuário atualizado!');
+
+            yield put(actions.registerUpdatedSuccess({ nome, email, password }));
+        } else {
+            yield call(axios.post, '/users', {
+                nome, email, password,
+            });
+
+            toast.success('Usuário cadastrado!');
+
+            yield put(actions.registerCreatedSuccess({ nome, email, password }));
         }
     } catch (e) {
         const errors = get(e, 'response.data.errors', []);
-        const status = get(e, 'response.status', 0);
+        // const status = get(e, 'response.status', 0);
 
         if (errors.length > 0) {
             errors.map(err => toast.error(err))

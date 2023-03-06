@@ -6,12 +6,14 @@ import { isEmail } from 'validator';
 import Loading from '../../components/Loading/Loading';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../store/modules/auth/actions';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const id = useSelector(state => console.log(state.auth.user.id));
+  const id = useSelector(state => state.auth.user.id);
   const nomeStored = useSelector(state => state.auth.user.nome);
   const emailStored = useSelector(state => state.auth.user.email);
   const isLoading = useSelector(state => state.auth.user.isLoading);
@@ -53,6 +55,12 @@ const Register = () => {
     if (formErros) return;
 
     dispatch(actions.registerRequest({ nome, email, password, id }));
+
+    if(!id){
+      return navigate('/login');
+    }
+    
+    return navigate('/');
   }
 
   return (
