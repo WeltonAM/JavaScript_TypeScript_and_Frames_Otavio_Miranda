@@ -1,6 +1,6 @@
 const objetoA: {
   chaveA: string;
-  chaveB: string;
+  readonly chaveB: string;
   chaveC?: string;
   [key: string]: unknown;
 } = {
